@@ -13,10 +13,10 @@ export default function Home({ posts }) {
   
   const [searchValue, setSearchValue] = useState('');
  const filteredBlogPosts = posts
- // .sort(
- //   (a, b) =>
- //   Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
- // )
+ .sort(
+   (a, b) =>
+   Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+ );
  // .filter((posts) =>
  //   post.properties.Name.title.toLowerCase().includes(searchValue.toLowerCase())
  // );
@@ -48,20 +48,18 @@ export default function Home({ posts }) {
         </header>
 
         <div className="relative w-full mb-4">
-        <input
-          aria-label="Search articles"
-          type="text"
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search articles"
-          
-        />
-      </div>
+          <input
+            aria-label="Search articles"
+            type="text"
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search articles"
+            
+          />
+        </div>
         {!searchValue && (
           <>
           <h2 className={styles.heading}>All Posts</h2>
-
           <ol className={styles.posts}>
-
           {posts.map((post) => {
             return (
               <li key={post.id} className={styles.post}>
@@ -80,36 +78,30 @@ export default function Home({ posts }) {
             );
           })}
           </ol>
-
           </>
         )}
         
         {!searchValue && (
           <>
           <h2 className={styles.heading}>All Results</h2>
-
-       {filteredBlogPosts.map((post) => {
-         return (
-           <ol className={styles.posts}>
-
-           <li key={post.id} className={styles.post}>
-             <h3 className={styles.postTitle}>
+         {filteredBlogPosts.map((post) => {
+           return (
+             <ol className={styles.posts}>
+             <li key={post.id} className={styles.post}>
+               <h3 className={styles.postTitle}>
+                 <Link href={`/${post.id}`}>
+                   <a>
+                     <Text text={post.properties.Name.title} />
+                   </a>
+                 </Link>
+               </h3>
                <Link href={`/${post.id}`}>
-                 <a>
-                   <Text text={post.properties.Name.title} />
-                 </a>
+                 <a> Read post →</a>
                </Link>
-             </h3>
-
-             <Link href={`/${post.id}`}>
-               <a> Read post →</a>
-             </Link>
-           </li>
-           </ol>
-
-         );
-       })}
-
+             </li>
+             </ol>
+           );
+         })}
           </>
         )}
           
@@ -126,13 +118,10 @@ export default function Home({ posts }) {
 
 export const getStaticProps = async () => {
   const database = await getDatabase(databaseId);
-
   return {
     props: {
       posts: database,
     },
     revalidate: 1,
-  };
-
-  
+  }; 
 };
