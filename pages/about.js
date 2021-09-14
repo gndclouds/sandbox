@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function About() {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,10 +16,7 @@ export default function Home() {
         sandbox
         </h1>
         <div className={styles.grid}>
-          <a href="https://gndclouds-sandbox-notion-blog-nextjs.vercel.app/" className={styles.card}>
-            <h2>Notion to Next.js Blog &rarr;</h2>
-            <p>Basic blog with [Notion](https://developers.notion.com/) as the CMS, ~~search~~, ~~category pages~~, ~~tag pages~~, and ~~author pages~~. </p>
-          </a>
+        
         </div>
       </main>
 
@@ -29,7 +26,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          playful experiments by 
+          Powered by{' '}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
